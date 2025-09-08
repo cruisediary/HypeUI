@@ -26,6 +26,8 @@ Want to enjoy SwiftUI syntax with UIKit? It's time to use HypeUI 😊
     * [Text Modifier](#text_modifier)
     * [Stack Modifier](#stack_modifier)
     * [ScrollView Modifier](#scrollview_modifier)
+    * [Image Modifier](#image_modifier)
+    * [UIKit Extensions](#uikit_extensions)
 - [Usage](#usage)
     * [HStack](#hstack)
     * [VStack](#vstack)
@@ -38,6 +40,7 @@ Want to enjoy SwiftUI syntax with UIKit? It's time to use HypeUI 😊
     * [Spacer](#spacer)
     * [LinearGradient](#lineargradient)
     * [ViewBuildable](#viewbuildable)
+    * [UIKit Extensions](#uikit_extensions_usage)
 - [Dependencies](#dependencies)
 
 ## Requirements
@@ -90,6 +93,8 @@ View Modifier   | ✅
 Text Modifier   | ✅
 Stack Modifier  | ✅
 ScrollView Modifier  | ✅
+Image Modifier  | ✅
+UIKit Extensions | ✅
 
 <a name="view_modifier"></a>
 ### View Modifier
@@ -148,6 +153,16 @@ distributed                      | Modify stack's distribution layout.
 bounces                          | Modify scroll view bounces.
 isPagingEnabled                  | Modify scroll view paging enabled.
 isScrollEnabled                  | Modify scroll view enabled.
+
+<a name="uikit_extensions"></a>
+### UIKit Extensions
+
+| name                           | Description  |
+---------------------------------|----------------
+shadow                           | Applies a shadow to the view with specified properties
+dropShadow                       | Applies a simple drop shadow with default styling
+removeShadow                     | Removes any shadow from the view
+debouncedAction                  | Adds debounced action to control events with specified delay
 
 ## Usage
 
@@ -327,7 +342,7 @@ Spacer()
 ```
 
 ### LinearGradient
-```
+```swift
 ProfileView()
     .background(
         LinearGradient(
@@ -367,12 +382,50 @@ struct ProfileView: ViewBuildable {
 }
 ```
 
+<a name="uikit_extensions_usage"></a>
+### UIKit Extensions
+
+#### Shadow
+```swift
+// Default shadow
+Text("Drop Shadow")
+    .background(.systemBlue)
+    .cornerRadius(8)
+    .shadow()
+
+// Custom shadow
+Text("Custom Shadow")
+    .background(.systemPurple)
+    .cornerRadius(8)
+    .shadow(color: .systemPurple, radius: 8, offset: CGSize(width: 0, height: 4), opacity: 0.4)
+
+// Remove shadow
+view.removeShadow()
+```
+
+#### Debounced Actions
+```swift
+// Default 0.3s delay
+button.debouncedAction {
+    print("Action executed!")
+}
+
+// Custom delay and events
+button.debouncedAction(delay: 1.0, for: .touchUpInside) {
+    print("Custom debounced action!")
+}
+
+// TextField debouncing
+textField.debouncedAction(delay: 0.5, for: .editingChanged) {
+    performSearch()
+}
+```
+
 ## Main Contributors
 cruz@hpcnt.com
 xeon@hpcnt.com
 owen.j@hpcnt.com
 dough@hpcnt.com
-
 ## Dependencies
 
 - [RxSwift](https://github.com/ReactiveX/RxSwift)
