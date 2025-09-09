@@ -163,6 +163,13 @@ shadow                           | Applies a shadow to the view with specified p
 dropShadow                       | Applies a simple drop shadow with default styling
 removeShadow                     | Removes any shadow from the view
 debouncedAction                  | Adds debounced action to control events with specified delay
+keyboardType                     | Sets the keyboard type for text input fields
+autocorrectionDisabled           | Sets whether to disable autocorrection for text input
+textContentType                  | Sets the text content type for autofill suggestions
+textFieldStyle                   | Sets the text field's border style
+submitLabel                      | Sets the submit label for the return key
+textInputAutocapitalization      | Sets the text capitalization style
+secureField                      | Sets whether the text field is a secure entry (password field)
 selection                        | Sets the selected segment index for segmented control (SwiftUI-style)
 pickerEnabled                    | Sets whether the segmented control is enabled
 selectedSegmentTintColor         | Sets the background color for the selected segment
@@ -425,6 +432,19 @@ button.debouncedAction(delay: 1.0, for: .touchUpInside) {
 textField.debouncedAction(delay: 0.5, for: .editingChanged) {
     performSearch()
 }
+```
+
+#### Text Input Controls
+```swift
+// TextField with SwiftUI-style modifiers
+UITextField()
+    .keyboardType(.emailAddress)
+    .textFieldStyle(.roundedRect)
+    .autocorrectionDisabled()
+    .textContentType(.emailAddress)
+    .submitLabel(.done)
+    .secureField(false)
+
 // Segmented Control with SwiftUI-style modifiers
 UISegmentedControl(items: ["Option 1", "Option 2", "Option 3"])
     .selection(0)
