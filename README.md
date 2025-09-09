@@ -163,6 +163,12 @@ shadow                           | Applies a shadow to the view with specified p
 dropShadow                       | Applies a simple drop shadow with default styling
 removeShadow                     | Removes any shadow from the view
 debouncedAction                  | Adds debounced action to control events with specified delay
+selection                        | Sets the selected segment index for segmented control (SwiftUI-style)
+pickerEnabled                    | Sets whether the segmented control is enabled
+selectedSegmentTintColor         | Sets the background color for the selected segment
+segmentedControlBackgroundColor  | Sets the background color of the segmented control
+momentary                        | Sets whether the control momentarily highlights segments when touched
+onSelectionChange                | Adds an action for value changed events
 
 ## Usage
 
@@ -419,6 +425,14 @@ button.debouncedAction(delay: 1.0, for: .touchUpInside) {
 textField.debouncedAction(delay: 0.5, for: .editingChanged) {
     performSearch()
 }
+// Segmented Control with SwiftUI-style modifiers
+UISegmentedControl(items: ["Option 1", "Option 2", "Option 3"])
+    .selection(0)
+    .selectedSegmentTintColor(.systemBlue)
+    .pickerEnabled(true)
+    .onSelectionChange { index in
+        print("Selected: \(index)")
+    }
 ```
 
 ## Main Contributors
