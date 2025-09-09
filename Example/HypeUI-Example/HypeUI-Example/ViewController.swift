@@ -193,6 +193,28 @@ class ViewController: UIViewController {
                         print("🚀 Debounced action executed!")
                     }
                     .padding(.horizontal, 64)
+                    VStack(spacing: 16) {
+                        UITextField()
+                            .keyboardType(.emailAddress)
+                            .textFieldStyle(.roundedRect)
+                            .autocorrectionDisabled()
+                            .textContentType(.emailAddress)
+                            .frame(height: 44)
+                        UITextView()
+                            .keyboardType(.default)
+                            .textInputAutocapitalization(.sentences)
+                            .textEditorScrollable(true)
+                            .frame(height: 100)
+                            .border(.systemGray3, width: 1)
+                            .cornerRadius(8)
+                        UISegmentedControl(items: ["Option 1", "Option 2", "Option 3"])
+                            .selection(0)
+                            .selectedSegmentTintColor(.systemBlue)
+                            .onSelectionChange { index in
+                                print("Selected segment: \(index)")
+                            }
+                    }
+                    .padding(.horizontal, 64)
                 }
                 .padding(.all, 24)
             }
