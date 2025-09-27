@@ -218,10 +218,31 @@ public extension UIView {
         return fillSuperview(insets: UIEdgeInsets(top: top, left: left, bottom: bottom, right: right))
     }
 
-    /// Removes all constraints from the view
+    /// Removes all constraints from the view without removing it from superview
     /// - Returns: Modified view
     @discardableResult
     func removeAllConstraints() -> Self {
+        // Remove constraints where this view is the first item
+        constraints.forEach { $0.isActive = false }
+        
+        // Remove constraints from superview where this view is involved
+        superview?.constraints.forEach { constraint in
+            if constraint.firstItem === self || constraint.secondItem === self {
+                constraint.isActive = false
+            }
+        }
+        
+        // Reset to use autoresizing masks
+        translatesAutoresizingMaskIntoConstraints = true
+        
+        return self
+    }
+    
+    /// Removes the view from superview and resets constraint settings
+    /// This effectively removes all constraints involving this view
+    /// - Returns: Modified view
+    @discardableResult
+    func removeFromSuperviewAndResetConstraints() -> Self {
         removeFromSuperview()
         translatesAutoresizingMaskIntoConstraints = true
         return self
