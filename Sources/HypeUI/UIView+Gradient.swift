@@ -66,6 +66,9 @@ public extension UIView {
 
         // Insert at the bottom of the layer hierarchy
         layer.insertSublayer(gradientLayer, at: 0)
+        
+        // Ensure frame updates when bounds change
+        setNeedsLayout()
 
         return self
     }
@@ -111,6 +114,9 @@ public extension UIView {
 
         // Insert at the bottom of the layer hierarchy
         layer.insertSublayer(gradientLayer, at: 0)
+        
+        // Ensure frame updates when bounds change
+        setNeedsLayout()
 
         return self
     }

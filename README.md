@@ -466,6 +466,34 @@ UISegmentedControl(items: ["Option 1", "Option 2", "Option 3"])
     }
 ```
 
+#### Important: Layer Frame Updates
+
+When using borders or gradients with HypeUI, ensure proper layer sizing by calling `updateHypeUILayers()` in your view's `layoutSubviews`:
+
+```swift
+class MyCustomView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateHypeUILayers() // Updates border and gradient layer frames
+    }
+}
+
+// Or in ViewBuildable components:
+struct MyViewBuildable: ViewBuildable {
+    func build() -> UIView {
+        let containerView = UIView()
+        
+        // Apply borders and gradients
+        containerView
+            .gradient(colors: [.red, .blue])
+            .border(edges: .all, color: .black, width: 2)
+        
+        // Container will automatically update layers when bounds change
+        return containerView
+    }
+}
+```
+
 ## Main Contributors
 cruz@hpcnt.com
 xeon@hpcnt.com

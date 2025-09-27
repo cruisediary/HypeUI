@@ -77,7 +77,22 @@ public extension UIView {
         let borderLayer = CALayer()
         borderLayer.backgroundColor = color.cgColor
         borderLayer.name = "border_\(edge.rawValue)"
-
+        
+        // Store edge and width info in the layer for later frame updates
+        borderLayer.setValue(edge.rawValue, forKey: "borderEdge")
+        borderLayer.setValue(width, forKey: "borderWidth")
+        
+        // Set initial frame - will be updated in layoutSubviews
+        updateBorderLayerFrame(borderLayer, edge: edge, width: width)
+        
+        layer.addSublayer(borderLayer)
+        
+        // Ensure frame updates when bounds change
+        setNeedsLayout()
+    }
+    
+    /// Updates border layer frame based on current bounds
+    private func updateBorderLayerFrame(_ borderLayer: CALayer, edge: UIRectEdge, width: CGFloat) {
         switch edge {
         case .top:
             borderLayer.frame = CGRect(x: 0, y: 0, width: bounds.width, height: width)
@@ -90,10 +105,23 @@ public extension UIView {
         default:
             break
         }
-
-        layer.addSublayer(borderLayer)
     }
 
+    /// Updates all border layer frames when bounds change
+    func updateBorderLayerFrames() {
+        layer.sublayers?.forEach { sublayer in
+            guard let name = sublayer.name,
+                  name.hasPrefix("border_"),
+                  let edgeRawValue = sublayer.value(forKey: "borderEdge") as? UInt,
+                  let width = sublayer.value(forKey: "borderWidth") as? CGFloat else {
+                return
+            }
+            
+            let edge = UIRectEdge(rawValue: edgeRawValue)
+            updateBorderLayerFrame(sublayer, edge: edge, width: width)
+        }
+    }
+    
     /// Removes border lines added with border(edges:color:width:)
     /// - Returns: Modified view
     func removeBorderLines() -> Self {
