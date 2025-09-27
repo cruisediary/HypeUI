@@ -218,4 +218,14 @@ public extension UIView {
         translatesAutoresizingMaskIntoConstraints = true
         return self
     }
+    
+    /// Updates all HypeUI layer frames (borders, gradients) when bounds change.
+    /// Call this method in your view's layoutSubviews to ensure proper layer sizing.
+    /// - Returns: Modified view
+    @discardableResult
+    func updateHypeUILayers() -> Self {
+        updateBorderLayerFrames()
+        updateGradientFrame()
+        return self
+    }
 }
