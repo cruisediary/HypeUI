@@ -52,14 +52,22 @@ public extension UIView {
 
         translatesAutoresizingMaskIntoConstraints = false
 
-        let guide = respectSafeArea ? superview.safeAreaLayoutGuide : superview.layoutMarginsGuide
-
-        NSLayoutConstraint.activate([
-            topAnchor.constraint(equalTo: respectSafeArea ? guide.topAnchor : superview.topAnchor, constant: insets.top),
-            leadingAnchor.constraint(equalTo: respectSafeArea ? guide.leadingAnchor : superview.leadingAnchor, constant: insets.left),
-            trailingAnchor.constraint(equalTo: respectSafeArea ? guide.trailingAnchor : superview.trailingAnchor, constant: -insets.right),
-            bottomAnchor.constraint(equalTo: respectSafeArea ? guide.bottomAnchor : superview.bottomAnchor, constant: -insets.bottom),
-        ])
+        if respectSafeArea {
+            let guide = superview.safeAreaLayoutGuide
+            NSLayoutConstraint.activate([
+                topAnchor.constraint(equalTo: guide.topAnchor, constant: insets.top),
+                leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: insets.left),
+                trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -insets.right),
+                bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -insets.bottom),
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                topAnchor.constraint(equalTo: superview.topAnchor, constant: insets.top),
+                leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: insets.left),
+                trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -insets.right),
+                bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: -insets.bottom),
+            ])
+        }
 
         return self
     }
