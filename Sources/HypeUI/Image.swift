@@ -21,7 +21,6 @@ public typealias Image = UIImageView
 // MARK: - Image
 
 public extension Image {
-
     /// A view that displays an image.
     /// - Parameter image: (optional) An object that manages image data in your app.
     convenience init(_ image: UIImage?) {

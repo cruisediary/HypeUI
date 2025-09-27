@@ -15,18 +15,17 @@
 //
 
 import Foundation
-import RxSwift
 import RxCocoa
+import RxSwift
 
 // MARK: - Behavior
 
 @propertyWrapper
 public final class Behavior<Value> {
-
     private let internalStore: BehaviorRelay<Value>
 
     public init(wrappedValue initialValue: Value) {
-        self.internalStore = .init(value: initialValue)
+        internalStore = .init(value: initialValue)
     }
 
     public var projectedValue: Observable<Value> {

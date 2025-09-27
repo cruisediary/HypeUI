@@ -19,6 +19,7 @@ import XCTest
 // MARK: - ViewArrayBuilderTests
 
 @testable import HypeUI
+
 final class ViewArrayBuilderTests: XCTestCase {
     func testViewArrayBuilder() {
         // given

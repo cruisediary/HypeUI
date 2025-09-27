@@ -19,70 +19,69 @@ import UIKit
 // MARK: - UITextView (SwiftUI Style)
 
 public extension UITextView {
-    
     /// Sets the keyboard type for the text view
     /// - Parameter type: The keyboard type to use
     /// - Returns: Modified text view
     func keyboardType(_ type: UIKeyboardType) -> Self {
-        self.keyboardType = type
+        keyboardType = type
         return self
     }
-    
+
     /// Sets whether to disable autocorrection for the text view
     /// - Parameter disabled: Whether autocorrection is disabled
     /// - Returns: Modified text view
     func autocorrectionDisabled(_ disabled: Bool = true) -> Self {
-        self.autocorrectionType = disabled ? .no : .yes
+        autocorrectionType = disabled ? .no : .yes
         return self
     }
-    
+
     /// Sets the text view's text content type for autofill
     /// - Parameter type: The text content type
     /// - Returns: Modified text view
     func textContentType(_ type: UITextContentType?) -> Self {
-        self.textContentType = type
+        textContentType = type
         return self
     }
-    
+
     /// Sets the text capitalization style
     /// - Parameter style: The capitalization style
     /// - Returns: Modified text view
     func textInputAutocapitalization(_ style: UITextAutocapitalizationType) -> Self {
-        self.autocapitalizationType = style
+        autocapitalizationType = style
         return self
     }
-    
+
     /// Sets whether the text view is editable
     /// - Parameter editable: Whether the text view is editable
     /// - Returns: Modified text view
     func textEditorEditable(_ editable: Bool) -> Self {
-        self.isEditable = editable
+        isEditable = editable
         return self
     }
-    
+
     /// Sets whether the text view is scrollable
     /// - Parameter scrollable: Whether the text view can scroll
     /// - Returns: Modified text view
     func textEditorScrollable(_ scrollable: Bool) -> Self {
-        self.isScrollEnabled = scrollable
+        isScrollEnabled = scrollable
         return self
     }
-    
+
     /// Hides the scroll content background (similar to SwiftUI's scrollContentBackground)
     /// - Parameter hidden: Whether to hide the background
     /// - Returns: Modified text view
     func scrollContentBackground(_ hidden: Bool) -> Self {
         if hidden {
-            self.backgroundColor = .clear
+            backgroundColor = .clear
         }
         return self
     }
-    
+
     /// Sets the submit label for the return key
     /// - Parameter label: The return key type
     /// - Returns: Modified text view
     func submitLabel(_ label: UIReturnKeyType) -> Self {
-        self.returnKeyType = label
+        returnKeyType = label
         return self
     }
 }

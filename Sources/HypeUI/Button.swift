@@ -14,16 +14,15 @@
 //  limitations under the License.
 //
 
-import UIKit
-import RxSwift
 import RxCocoa
+import RxSwift
+import UIKit
 
 public typealias Button = UIButton
 
 // MARK: - Button
 
 public extension Button {
-
     /// Button with action closure.
     /// - Parameter action: Escaping action closure.
     convenience init(action: @escaping () -> Void) {
@@ -39,9 +38,9 @@ public extension Button {
         self.init()
         let buttonView = view().build()
         _ = rx.tap
-            .map { Void() }
+            .map { () }
             .subscribe(onNext: action)
-        self.addSubviewWithFit(buttonView.allowsHitTesting(false))
+        addSubviewWithFit(buttonView.allowsHitTesting(false))
 
         _ = Observable<CGFloat>
             .merge(

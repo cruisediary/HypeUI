@@ -19,8 +19,8 @@ import XCTest
 // MARK: - ZStackTests
 
 @testable import HypeUI
-final class ZStackTests: XCLayoutTestCase {
 
+final class ZStackTests: XCLayoutTestCase {
     func testZStack() {
         // given
         let image = Image()

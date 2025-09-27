@@ -19,8 +19,8 @@ import XCTest
 // MARK: - HStackTests
 
 @testable import HypeUI
-final class HStackTests: XCLayoutTestCase {
 
+final class HStackTests: XCLayoutTestCase {
     func testHStackImageWithText() {
         // given
         let spacing: CGFloat = 5

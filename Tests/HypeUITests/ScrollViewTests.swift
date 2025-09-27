@@ -19,6 +19,7 @@ import XCTest
 // MARK: - ScrollViewTests
 
 @testable import HypeUI
+
 final class ScrollViewTests: XCLayoutTestCase {
     func testHorizontalScrollViewSmallContentSize() {
         // given
@@ -69,7 +70,6 @@ final class ScrollViewTests: XCLayoutTestCase {
         XCTAssertGreaterThan(scrollView.contentSize.width, contentView.bounds.size.width)
     }
 
-
     func testVerticalScrollViewSmallContentSize() {
         // given
         let scrollView = ScrollView(.vertical, showsIndicators: false) {
@@ -98,7 +98,7 @@ final class ScrollViewTests: XCLayoutTestCase {
         // given
         let scrollView = ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .center, spacing: 20) {
-                (1...5).map { _ in
+                (1 ... 5).map { _ in
                     HStack(alignment: .center) {
                         Text()
                             .frame(height: 100)

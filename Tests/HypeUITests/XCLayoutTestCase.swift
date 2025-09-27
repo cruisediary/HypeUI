@@ -19,6 +19,7 @@ import XCTest
 // MARK: - XCLayoutTestCase
 
 @testable import HypeUI
+
 class XCLayoutTestCase: XCTestCase {
     var contentView: UIView!
 

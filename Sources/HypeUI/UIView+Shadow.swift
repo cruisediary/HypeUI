@@ -19,7 +19,6 @@ import UIKit
 // MARK: - UIView (Shadow)
 
 public extension UIView {
-    
     /// Applies a shadow to the view with specified properties
     /// - Parameters:
     ///   - color: Shadow color
@@ -28,9 +27,10 @@ public extension UIView {
     ///   - opacity: Shadow opacity (0.0 to 1.0)
     /// - Returns: Modified view
     func shadow(color: UIColor = .black,
-               radius: CGFloat = 4.0,
-               offset: CGSize = CGSize(width: 0, height: 2),
-               opacity: Float = 0.2) -> Self {
+                radius: CGFloat = 4.0,
+                offset: CGSize = CGSize(width: 0, height: 2),
+                opacity: Float = 0.2) -> Self
+    {
         layer.shadowColor = color.cgColor
         layer.shadowRadius = radius
         layer.shadowOffset = offset
@@ -38,13 +38,13 @@ public extension UIView {
         layer.masksToBounds = false
         return self
     }
-    
+
     /// Applies a simple drop shadow with default styling
     /// - Returns: Modified view
     func dropShadow() -> Self {
         return shadow()
     }
-    
+
     /// Removes any shadow from the view
     /// - Returns: Modified view
     func removeShadow() -> Self {

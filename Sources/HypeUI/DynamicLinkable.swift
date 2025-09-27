@@ -14,9 +14,9 @@
 //  limitations under the License.
 //
 
-import UIKit
-import RxSwift
 import RxCocoa
+import RxSwift
+import UIKit
 
 // MARK: - DynamicLinkable (protocol)
 
@@ -33,7 +33,7 @@ public extension DynamicLinkable {
     func linked<Value>(_ stream: Observable<Value>, keyPath: ReferenceWritableKeyPath<Self, Value>) -> Self {
         let disposeBag = DisposeBag()
 
-        stream.bind(to: self.rx[dynamicMember: keyPath])
+        stream.bind(to: rx[dynamicMember: keyPath])
             .disposed(by: disposeBag)
 
         retain(disposeBag)
@@ -49,7 +49,7 @@ public extension DynamicLinkable {
     func linked<Value>(_ stream: Observable<Value>, keyPath: ReferenceWritableKeyPath<Self, Value?>) -> Self {
         let disposeBag = DisposeBag()
 
-        stream.bind(to: self.rx[dynamicMember: keyPath])
+        stream.bind(to: rx[dynamicMember: keyPath])
             .disposed(by: disposeBag)
         retain(disposeBag)
 

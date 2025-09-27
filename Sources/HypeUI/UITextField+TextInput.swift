@@ -19,60 +19,59 @@ import UIKit
 // MARK: - UITextField (SwiftUI Style)
 
 public extension UITextField {
-    
     /// Sets the keyboard type for the text field
     /// - Parameter type: The keyboard type to use
     /// - Returns: Modified text field
     func keyboardType(_ type: UIKeyboardType) -> Self {
-        self.keyboardType = type
+        keyboardType = type
         return self
     }
-    
+
     /// Sets whether to disable autocorrection for the text field
     /// - Parameter disabled: Whether autocorrection is disabled
     /// - Returns: Modified text field
     func autocorrectionDisabled(_ disabled: Bool = true) -> Self {
-        self.autocorrectionType = disabled ? .no : .yes
+        autocorrectionType = disabled ? .no : .yes
         return self
     }
-    
+
     /// Sets the text field's text content type for autofill
     /// - Parameter type: The text content type
     /// - Returns: Modified text field
     func textContentType(_ type: UITextContentType?) -> Self {
-        self.textContentType = type
+        textContentType = type
         return self
     }
-    
+
     /// Sets the text field style similar to SwiftUI's textFieldStyle
     /// - Parameter style: The border style to apply
     /// - Returns: Modified text field
     func textFieldStyle(_ style: UITextField.BorderStyle) -> Self {
-        self.borderStyle = style
+        borderStyle = style
         return self
     }
-    
+
     /// Sets the submit label for the return key
     /// - Parameter label: The return key type
     /// - Returns: Modified text field
     func submitLabel(_ label: UIReturnKeyType) -> Self {
-        self.returnKeyType = label
+        returnKeyType = label
         return self
     }
-    
+
     /// Sets the text capitalization style
     /// - Parameter style: The capitalization style
     /// - Returns: Modified text field
     func textInputAutocapitalization(_ style: UITextAutocapitalizationType) -> Self {
-        self.autocapitalizationType = style
+        autocapitalizationType = style
         return self
     }
-    
+
     /// Sets whether the text field is a secure entry (password field)
     /// - Parameter isSecure: Whether to obscure the text
     /// - Returns: Modified text field
     func secureField(_ isSecure: Bool = true) -> Self {
-        self.isSecureTextEntry = isSecure
+        isSecureTextEntry = isSecure
         return self
     }
 }
