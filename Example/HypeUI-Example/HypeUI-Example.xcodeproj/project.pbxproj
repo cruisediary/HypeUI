@@ -117,7 +117,7 @@
 			);
 			mainGroup = FC8A9EFC291D33C100022ED3;
 			packageReferences = (
-				FC8A9F1C291D33FC00022ED3 /* XCRemoteSwiftPackageReference "HypeUI" */,
+				FC8A9F1C291D33FC00022ED3 /* XCLocalSwiftPackageReference "../../" */,
 			);
 			productRefGroup = FC8A9F06291D33C100022ED3 /* Products */;
 			projectDirPath = "";
@@ -367,16 +367,12 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		FC8A9F1C291D33FC00022ED3 /* XCRemoteSwiftPackageReference "HypeUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hyperconnect/HypeUI";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		FC8A9F1C291D33FC00022ED3 /* XCLocalSwiftPackageReference "../../" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../;
 		};
-/* End XCRemoteSwiftPackageReference section */
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		FC8A9F1D291D33FC00022ED3 /* HypeUI */ = {

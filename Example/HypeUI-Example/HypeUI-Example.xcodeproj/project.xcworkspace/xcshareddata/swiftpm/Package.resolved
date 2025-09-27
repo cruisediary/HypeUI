@@ -1,15 +1,6 @@
 {
-  "originHash" : "6eb46a045a1d6188596be8700209c40e87a25523587f34f8e42be5cf99662ade",
+  "originHash" : "5ee429f7e1b43151e7993992f70fb6577a489eafc928d2a909ab16fcb5c4b689",
   "pins" : [
-    {
-      "identity" : "hypeui",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/hyperconnect/HypeUI",
-      "state" : {
-        "revision" : "f485ca4ffd96df345c5ecf6864d0ca8a172dea00",
-        "version" : "0.3.0"
-      }
-    },
     {
       "identity" : "rxswift",
       "kind" : "remoteSourceControl",
