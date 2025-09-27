@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "HypeUI",
     platforms: [
-        .iOS(.v12)
+        .iOS(.v12),
     ],
     products: [
         .library(name: "HypeUI", targets: ["HypeUI"]),
@@ -19,11 +19,11 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "HypeUI",
-            dependencies: ["RxSwift", "RxCocoa", "SnapKit"]),
+            dependencies: ["RxSwift", "RxCocoa", "SnapKit"]
+        ),
         .testTarget(
             name: "HypeUITests",
-            dependencies: ["HypeUI"]),
+            dependencies: ["HypeUI"]
+        ),
     ]
 )
-
-

@@ -20,14 +20,12 @@ import UIKit
 
 @resultBuilder
 public struct ViewArrayBuilder {
-
     /// Build a views from variadic child views
     /// - Parameter views: An buildable variadic child views
     /// - Returns: An array of views that are composed of variadic child views
     public static func buildBlock(_ views: ViewBuildable...) -> [UIView] {
         views.map { $0.build() }
     }
-
 
     /// Build a views from array of views
     /// - Parameter views: An array of buildable views

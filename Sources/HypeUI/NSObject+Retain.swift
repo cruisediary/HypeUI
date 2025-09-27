@@ -21,7 +21,6 @@ private var associatedObjectHandle: UInt8 = 0
 // MARK: - NSObject (retain)
 
 public extension NSObject {
-
     /// Increments the receiver’s reference count.
     /// - Parameter object: receiver
     func retain(_ object: Any) {

@@ -21,7 +21,6 @@ public typealias Text = UILabel
 // MARK: - Text
 
 public extension Text {
-
     /// A view that displays one or more lines of read-only text.
     /// - Parameter text: (optional) text.
     convenience init(_ text: String?) {
@@ -41,7 +40,7 @@ public extension Text {
     /// - Parameter color: An object that stores color data and sometimes opacity.
     /// - Returns: Modified text.
     func foregroundColor(_ color: UIColor) -> Text {
-        self.textColor = color
+        textColor = color
         return self
     }
 
@@ -73,7 +72,7 @@ public extension Text {
     /// - Parameter adjustsFontSizeToFit: A Boolean value that determines whether the label reduces the text’s font size to fit the title string into the label’s bounding rectangle.
     /// - Returns: Modified text.
     func adjustedFontSize(_ adjustsFontSizeToFit: Bool) -> Text {
-        self.adjustsFontSizeToFitWidth = adjustsFontSizeToFit
+        adjustsFontSizeToFitWidth = adjustsFontSizeToFit
         return self
     }
 
@@ -81,7 +80,7 @@ public extension Text {
     /// - Parameter factor: The minimum scale factor for the label’s text.
     /// - Returns: Modified text.
     func minimumScaleFactor(_ factor: CGFloat) -> Text {
-        self.minimumScaleFactor = factor
+        minimumScaleFactor = factor
         return self
     }
     

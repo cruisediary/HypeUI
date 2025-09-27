@@ -19,8 +19,8 @@ import XCTest
 // MARK: - SpacerTests
 
 @testable import HypeUI
-final class SpacerTests: XCTestCase {
 
+final class SpacerTests: XCTestCase {
     func testSpacerUILayoutPriority() {
         let sut = Spacer()
 
@@ -41,5 +41,3 @@ final class SpacerTests: XCTestCase {
         XCTAssertLessThan(sut.contentCompressionResistancePriority(for: .horizontal), target.contentCompressionResistancePriority(for: .horizontal))
     }
 }
-
-

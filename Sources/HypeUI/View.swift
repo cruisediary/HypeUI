@@ -14,18 +14,17 @@
 //  limitations under the License.
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
 // MARK: -  UIView
 
 public extension UIView {
-
     /// Sets the priority with which a view resists being made larger than its intrinsic size.
     /// - Parameter priority: The new priority.
     /// - Returns: Modified view.
     func setHContentHugging(priority: UILayoutPriority) -> Self {
-        self.setContentHuggingPriority(priority, for: .horizontal)
+        setContentHuggingPriority(priority, for: .horizontal)
         return self
     }
 
@@ -33,7 +32,7 @@ public extension UIView {
     /// - Parameter priority: The new priority.
     /// - Returns: Modified view.
     func setVContentHugging(priority: UILayoutPriority) -> Self {
-        self.setContentHuggingPriority(priority, for: .vertical)
+        setContentHuggingPriority(priority, for: .vertical)
         return self
     }
 
@@ -41,7 +40,7 @@ public extension UIView {
     /// - Parameter priority: The new priority.
     /// - Returns: Modified view.
     func setHContentCompressionResistance(priority: UILayoutPriority) -> Self {
-        self.setContentCompressionResistancePriority(priority, for: .horizontal)
+        setContentCompressionResistancePriority(priority, for: .horizontal)
         return self
     }
 
@@ -49,7 +48,7 @@ public extension UIView {
     /// - Parameter priority: The new priority.
     /// - Returns: modified view
     func setVContentCompressionResistance(priority: UILayoutPriority) -> Self {
-        self.setContentCompressionResistancePriority(priority, for: .vertical)
+        setContentCompressionResistancePriority(priority, for: .vertical)
         return self
     }
 
@@ -57,7 +56,7 @@ public extension UIView {
     /// - Parameter ratio: Size ratio.
     /// - Returns: Modified view.
     func makeRatio(_ ratio: CGFloat) -> Self {
-        self.snp.makeConstraints { maker in
+        snp.makeConstraints { maker in
             maker.height.equalTo(self.snp.width).multipliedBy(ratio)
         }
         return self
@@ -67,7 +66,7 @@ public extension UIView {
     /// - Parameter radius: The radius to use when drawing rounded corners for the layer’s background.
     /// - Returns: Modified view.
     func cornerRadius(_ radius: CGFloat) -> Self {
-        self.applyRound(radius)
+        applyRound(radius)
         return self
     }
 
@@ -76,7 +75,7 @@ public extension UIView {
     /// - Parameter corners: A mask used to apply a radius to a specific corner.
     /// - Returns: Modified view.
     func cornerRadius(_ radius: CGFloat, corners: CACornerMask? = nil) -> Self {
-        self.applyRound(radius, corners: corners)
+        applyRound(radius, corners: corners)
         return self
     }
 
@@ -85,10 +84,10 @@ public extension UIView {
     /// - Parameter corners: A mask used to apply a radius to a specific corner.
     private func applyRound(_ radius: CGFloat, corners: CACornerMask? = nil) {
         if let corners = corners {
-            self.layer.maskedCorners = corners
+            layer.maskedCorners = corners
         }
-        self.layer.cornerRadius = radius
-        self.layer.masksToBounds = true
+        layer.cornerRadius = radius
+        layer.masksToBounds = true
     }
 
     /// Modify border style.
@@ -97,8 +96,8 @@ public extension UIView {
     ///   - width: The width of the layer’s border.
     /// - Returns: Modified view
     func border(_ color: UIColor, width: CGFloat) -> Self {
-        self.layer.borderColor = color.cgColor
-        self.layer.borderWidth = width
+        layer.borderColor = color.cgColor
+        layer.borderWidth = width
         return self
     }
 
@@ -106,7 +105,7 @@ public extension UIView {
     /// - Parameter color: An object that stores color data and sometimes opacity.
     /// - Returns: Modified view
     func background(_ color: UIColor) -> Self {
-        self.backgroundColor = color
+        backgroundColor = color
         return self
     }
 
@@ -141,7 +140,7 @@ public extension UIView {
     func padding(_ inset: UIEdgeInsets) -> UIView {
         let view = UIView()
         view.addSubview(self)
-        self.snp.makeConstraints { maker in
+        snp.makeConstraints { maker in
             maker.directionalEdges.equalTo(inset)
         }
         return view
@@ -154,7 +153,7 @@ public extension UIView {
     /// - Returns: Modified view.
     func padding(_ edges: Edge.Set, _ length: CGFloat) -> UIView {
         let paddingView = UIView()
-        self.translatesAutoresizingMaskIntoConstraints = false
+        translatesAutoresizingMaskIntoConstraints = false
         paddingView.addSubview(self)
 
         NSLayoutConstraint.activate([
@@ -171,7 +170,7 @@ public extension UIView {
     /// - Parameter allows: A value type whose instances are either true or false.
     /// - Returns: Modified view.
     func allowsHitTesting(_ allows: Bool) -> Self {
-        self.isUserInteractionEnabled = allows
+        isUserInteractionEnabled = allows
         return self
     }
 
@@ -194,7 +193,7 @@ public extension UIView {
     /// - Parameter identifier: A string that identifies the element.
     /// - Returns: Modified view.
     func accessibilityIdentifier(_ identifier: String) -> Self {
-        self.accessibilityIdentifier = identifier
+        accessibilityIdentifier = identifier
         return self
     }
 
@@ -287,7 +286,6 @@ public extension UIView {
 // MARK: - UIStackView
 
 public extension UIStackView {
-
     /// Modify stack's distribution layout.
     /// - Parameter distribution: The layout that defines the size and position of the arranged views along the stack view’s axis.
     /// - Returns: Modified stack view.

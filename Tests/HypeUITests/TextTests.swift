@@ -19,8 +19,8 @@ import XCTest
 // MARK: - TextTests
 
 @testable import HypeUI
-final class TextTests: XCLayoutTestCase {
 
+final class TextTests: XCLayoutTestCase {
     func testOptionalNilTextModifyFont() {
         // Given
         let sut = Text(nil)

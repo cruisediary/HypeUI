@@ -19,6 +19,7 @@ import XCTest
 // MARK: - UIView_PassthroughTests
 
 @testable import HypeUI
+
 final class UIView_PassthroughTests: XCTestCase {
     enum Constant {
         static let defaultFrame = CGRect(origin: .zero, size: CGSize(width: 100, height: 100))

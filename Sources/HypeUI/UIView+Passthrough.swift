@@ -19,7 +19,6 @@ import UIKit
 // MARK: - UIView (Passthrought)
 
 extension UIView {
-
     /// [Hit-Testing in iOS](http://smnh.me/hit-testing-in-ios/)
     func passthrough(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         guard isUserInteractionEnabled else { return nil }
@@ -35,4 +34,3 @@ extension UIView {
         return nil
     }
 }
-

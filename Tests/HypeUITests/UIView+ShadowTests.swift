@@ -14,21 +14,21 @@
 //  limitations under the License.
 //
 
-import XCTest
 import UIKit
+import XCTest
 
 // MARK: - UIView+ShadowTests
 
 @testable import HypeUI
+
 final class UIViewShadowTests: XCTestCase {
-    
     func testShadowWithDefaultValues() {
         // given
         let view = UIView()
-        
+
         // when
         let modifiedView = view.shadow()
-        
+
         // then
         XCTAssertEqual(modifiedView, view)
         XCTAssertEqual(view.layer.shadowColor, UIColor.black.cgColor)
@@ -37,7 +37,7 @@ final class UIViewShadowTests: XCTestCase {
         XCTAssertEqual(view.layer.shadowOpacity, 0.2)
         XCTAssertFalse(view.layer.masksToBounds)
     }
-    
+
     func testShadowWithCustomValues() {
         // given
         let view = UIView()
@@ -45,7 +45,7 @@ final class UIViewShadowTests: XCTestCase {
         let customRadius: CGFloat = 8.0
         let customOffset = CGSize(width: 3, height: 5)
         let customOpacity: Float = 0.5
-        
+
         // when
         let modifiedView = view.shadow(
             color: customColor,
@@ -53,7 +53,7 @@ final class UIViewShadowTests: XCTestCase {
             offset: customOffset,
             opacity: customOpacity
         )
-        
+
         // then
         XCTAssertEqual(modifiedView, view)
         XCTAssertEqual(view.layer.shadowColor, customColor.cgColor)
@@ -62,14 +62,14 @@ final class UIViewShadowTests: XCTestCase {
         XCTAssertEqual(view.layer.shadowOpacity, customOpacity)
         XCTAssertFalse(view.layer.masksToBounds)
     }
-    
+
     func testDropShadow() {
         // given
         let view = UIView()
-        
+
         // when
         let modifiedView = view.dropShadow()
-        
+
         // then
         XCTAssertEqual(modifiedView, view)
         XCTAssertEqual(view.layer.shadowColor, UIColor.black.cgColor)
@@ -78,15 +78,15 @@ final class UIViewShadowTests: XCTestCase {
         XCTAssertEqual(view.layer.shadowOpacity, 0.2)
         XCTAssertFalse(view.layer.masksToBounds)
     }
-    
+
     func testRemoveShadow() {
         // given
         let view = UIView()
         view.shadow(opacity: 0.5)
-        
+
         // when
         let modifiedView = view.removeShadow()
-        
+
         // then
         XCTAssertEqual(modifiedView, view)
         XCTAssertEqual(view.layer.shadowOpacity, 0.0)

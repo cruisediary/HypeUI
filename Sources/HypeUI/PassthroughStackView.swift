@@ -19,7 +19,7 @@ import UIKit
 // MARK: - PassthroughStackView
 
 public final class PassthroughStackView: UIStackView {
-    public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    override public func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         return passthrough(point, with: event)
     }
 }

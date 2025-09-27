@@ -14,11 +14,10 @@
 //  limitations under the License.
 //
 
-import UIKit
 import HypeUI
+import UIKit
 
 class ViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -61,7 +60,7 @@ class ViewController: UIViewController {
                         .frame(height: 1)
                     Button(action: { print("🐠 Click Me!!") }) {
                         Text("🐠 Click Me!!")
-                            .font(UIFont.systemFont(ofSize: 16, weight: .bold ))
+                            .font(UIFont.systemFont(ofSize: 16, weight: .bold))
                             .foregroundColor(UIColor.white)
                             .textAligned(.center)
                             .padding(.horizontal, 24)
@@ -71,7 +70,7 @@ class ViewController: UIViewController {
                     }.padding(.horizontal, 64)
                     Button(action: { print("Border Button") }) {
                         Text("Border Button")
-                            .font(UIFont.systemFont(ofSize: 16, weight: .bold ))
+                            .font(UIFont.systemFont(ofSize: 16, weight: .bold))
                             .foregroundColor(UIColor.black)
                             .textAligned(.center)
                             .padding(.horizontal, 24)
@@ -80,7 +79,7 @@ class ViewController: UIViewController {
                             .border(UIColor.black, width: 2)
                             .cornerRadius(24)
                     }.padding(.horizontal, 64)
-                    Button(action: { print("Stack Button")}) {
+                    Button(action: { print("Stack Button") }) {
                         ZStack {
                             UIView()
                                 .background(.systemBlue)
@@ -177,7 +176,7 @@ class ViewController: UIViewController {
                         .background(UIColor.systemPurple)
                         .cornerRadius(8)
                         .shadow(color: .systemPurple, radius: 8, offset: CGSize(width: 0, height: 4), opacity: 0.4)
-                    Button(action: { 
+                    Button(action: {
                         print("Debounced button tapped!")
                     }) {
                         Text("Debounced Button")

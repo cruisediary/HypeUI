@@ -14,14 +14,14 @@
 //  limitations under the License.
 //
 
-import XCTest
 import UIKit
+import XCTest
 
 // MARK: - ViewTests
 
 @testable import HypeUI
-final class ViewTests: XCLayoutTestCase {
 
+final class ViewTests: XCLayoutTestCase {
     func testPaddingWithUIEdgeInsets() {
         // given
         let sut = HStack(spacing: 5) {
