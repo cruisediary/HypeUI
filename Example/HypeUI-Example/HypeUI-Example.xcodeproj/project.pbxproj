@@ -377,7 +377,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		FC8A9F1D291D33FC00022ED3 /* HypeUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FC8A9F1C291D33FC00022ED3 /* XCLocalSwiftPackageReference "../../.." */;
+			package = FC8A9F1C291D33FC00022ED3 /* XCLocalSwiftPackageReference "../.." */;
 			productName = HypeUI;
 		};
 /* End XCSwiftPackageProductDependency section */
