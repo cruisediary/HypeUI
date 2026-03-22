@@ -39,7 +39,6 @@ final class MusicPlayerViewController: UIViewController {
 
     private let heroHeight: CGFloat = 320
     private var pagingScrollView: UIScrollView!
-    private weak var pageControlView: UIPageControl?
     private var timer: Timer?
     private let disposeBag = DisposeBag()
 
@@ -120,8 +119,6 @@ final class MusicPlayerViewController: UIViewController {
                 let x = CGFloat(page) * UIScreen.main.bounds.width
                 self.pagingScrollView?.setContentOffset(CGPoint(x: x, y: 0), animated: true)
             }
-        pageControlView = pageControl
-
         // ── Bindings ─────────────────────────────────────────────────────────
         $currentTrack
             .map { [weak self] idx -> String? in self?.tracks[idx].title }
