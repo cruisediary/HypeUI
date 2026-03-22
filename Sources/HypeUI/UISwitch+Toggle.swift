@@ -16,23 +16,16 @@
 
 import UIKit
 
-// MARK: - SwitchTarget
-
-private final class SwitchTarget: NSObject {
-    private let action: (Bool) -> Void
-
-    init(action: @escaping (Bool) -> Void) {
-        self.action = action
-    }
-
-    @objc func valueChanged(_ sender: UISwitch) {
-        action(sender.isOn)
-    }
-}
-
 // MARK: - UISwitch (Toggle)
 
+private var uiSwitchOnChangeKey: UInt8 = 0
+
 public extension UISwitch {
+
+    private var onChangeAction: ((Bool) -> Void)? {
+        get { objc_getAssociatedObject(self, &uiSwitchOnChangeKey) as? (Bool) -> Void }
+        set { objc_setAssociatedObject(self, &uiSwitchOnChangeKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
+    }
 
     /// Sets the on/off state of the switch.
     /// - Parameter isOn: A Boolean value that determines the on/off state of the switch.
@@ -70,9 +63,12 @@ public extension UISwitch {
     /// - Parameter action: A closure that receives the new on/off state.
     /// - Returns: Modified switch.
     func onChange(_ action: @escaping (Bool) -> Void) -> Self {
-        let target = SwitchTarget(action: action)
-        addTarget(target, action: #selector(SwitchTarget.valueChanged(_:)), for: .valueChanged)
-        retain(target)
+        onChangeAction = action
+        addTarget(self, action: #selector(handleSwitchValueChanged), for: .valueChanged)
         return self
+    }
+
+    @objc func handleSwitchValueChanged() {
+        onChangeAction?(isOn)
     }
 }

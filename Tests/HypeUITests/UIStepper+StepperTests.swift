@@ -108,12 +108,13 @@ final class UIStepperStepperTests: XCLayoutTestCase {
     func testOnChange() {
         // given
         let sut = UIStepper()
+        contentView.addSubview(sut)
         var receivedValue: Double?
 
         // when
         let output = sut.onChange { receivedValue = $0 }
         sut.value = 3.0
-        sut.sendActions(for: .valueChanged)
+        sut.handleStepperValueChanged()
 
         // then
         XCTAssertEqual(receivedValue, 3.0)

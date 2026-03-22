@@ -16,23 +16,16 @@
 
 import UIKit
 
-// MARK: - StepperTarget
-
-private final class StepperTarget: NSObject {
-    private let action: (Double) -> Void
-
-    init(action: @escaping (Double) -> Void) {
-        self.action = action
-    }
-
-    @objc func valueChanged(_ sender: UIStepper) {
-        action(sender.value)
-    }
-}
-
 // MARK: - UIStepper (Stepper)
 
+private var uiStepperOnChangeKey: UInt8 = 0
+
 public extension UIStepper {
+
+    private var onChangeAction: ((Double) -> Void)? {
+        get { objc_getAssociatedObject(self, &uiStepperOnChangeKey) as? (Double) -> Void }
+        set { objc_setAssociatedObject(self, &uiStepperOnChangeKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
+    }
 
     /// Sets the numeric value of the stepper.
     /// - Parameter value: The numeric value of the stepper.
@@ -94,9 +87,12 @@ public extension UIStepper {
     /// - Parameter action: A closure that receives the new stepper value.
     /// - Returns: Modified stepper.
     func onChange(_ action: @escaping (Double) -> Void) -> Self {
-        let target = StepperTarget(action: action)
-        addTarget(target, action: #selector(StepperTarget.valueChanged(_:)), for: .valueChanged)
-        retain(target)
+        onChangeAction = action
+        addTarget(self, action: #selector(handleStepperValueChanged), for: .valueChanged)
         return self
+    }
+
+    @objc func handleStepperValueChanged() {
+        onChangeAction?(value)
     }
 }

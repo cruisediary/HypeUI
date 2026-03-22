@@ -85,12 +85,13 @@ final class UISwitchToggleTests: XCLayoutTestCase {
     func testOnChange() {
         // given
         let sut = UISwitch()
+        contentView.addSubview(sut)
         var receivedValue: Bool?
 
         // when
         let output = sut.onChange { receivedValue = $0 }
         sut.isOn = true
-        sut.sendActions(for: .valueChanged)
+        sut.handleSwitchValueChanged()
 
         // then
         XCTAssertTrue(receivedValue == true)

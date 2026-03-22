@@ -16,23 +16,16 @@
 
 import UIKit
 
-// MARK: - SliderTarget
-
-private final class SliderTarget: NSObject {
-    private let action: (Float) -> Void
-
-    init(action: @escaping (Float) -> Void) {
-        self.action = action
-    }
-
-    @objc func valueChanged(_ sender: UISlider) {
-        action(sender.value)
-    }
-}
-
 // MARK: - UISlider (Slider)
 
+private var uiSliderOnChangeKey: UInt8 = 0
+
 public extension UISlider {
+
+    private var onChangeAction: ((Float) -> Void)? {
+        get { objc_getAssociatedObject(self, &uiSliderOnChangeKey) as? (Float) -> Void }
+        set { objc_setAssociatedObject(self, &uiSliderOnChangeKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
+    }
 
     /// Sets the current value of the slider.
     /// - Parameters:
@@ -96,9 +89,12 @@ public extension UISlider {
     /// - Parameter action: A closure that receives the new slider value.
     /// - Returns: Modified slider.
     func onChange(_ action: @escaping (Float) -> Void) -> Self {
-        let target = SliderTarget(action: action)
-        addTarget(target, action: #selector(SliderTarget.valueChanged(_:)), for: .valueChanged)
-        retain(target)
+        onChangeAction = action
+        addTarget(self, action: #selector(handleSliderValueChanged), for: .valueChanged)
         return self
+    }
+
+    @objc func handleSliderValueChanged() {
+        onChangeAction?(value)
     }
 }

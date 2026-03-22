@@ -16,23 +16,16 @@
 
 import UIKit
 
-// MARK: - PageControlTarget
-
-private final class PageControlTarget: NSObject {
-    private let action: (Int) -> Void
-
-    init(action: @escaping (Int) -> Void) {
-        self.action = action
-    }
-
-    @objc func valueChanged(_ sender: UIPageControl) {
-        action(sender.currentPage)
-    }
-}
-
 // MARK: - UIPageControl (PageControl)
 
+private var uiPageControlOnChangeKey: UInt8 = 0
+
 public extension UIPageControl {
+
+    private var onChangeAction: ((Int) -> Void)? {
+        get { objc_getAssociatedObject(self, &uiPageControlOnChangeKey) as? (Int) -> Void }
+        set { objc_setAssociatedObject(self, &uiPageControlOnChangeKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
+    }
 
     /// Sets the current page displayed by the page control.
     /// - Parameter page: The current page, whose indicator is displayed as white dot.
@@ -78,9 +71,12 @@ public extension UIPageControl {
     /// - Parameter action: A closure that receives the new current page index.
     /// - Returns: Modified page control.
     func onChange(_ action: @escaping (Int) -> Void) -> Self {
-        let target = PageControlTarget(action: action)
-        addTarget(target, action: #selector(PageControlTarget.valueChanged(_:)), for: .valueChanged)
-        retain(target)
+        onChangeAction = action
+        addTarget(self, action: #selector(handlePageControlValueChanged), for: .valueChanged)
         return self
+    }
+
+    @objc func handlePageControlValueChanged() {
+        onChangeAction?(currentPage)
     }
 }

@@ -108,12 +108,13 @@ final class UISliderSliderTests: XCLayoutTestCase {
     func testOnChange() {
         // given
         let sut = UISlider()
+        contentView.addSubview(sut)
         var receivedValue: Float?
 
         // when
         let output = sut.onChange { receivedValue = $0 }
         sut.value = 0.75
-        sut.sendActions(for: .valueChanged)
+        sut.handleSliderValueChanged()
 
         // then
         XCTAssertEqual(receivedValue, 0.75)

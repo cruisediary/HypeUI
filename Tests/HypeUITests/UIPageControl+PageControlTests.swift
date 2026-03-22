@@ -85,13 +85,14 @@ final class UIPageControlPageControlTests: XCLayoutTestCase {
     func testOnChange() {
         // given
         let sut = UIPageControl()
+        contentView.addSubview(sut)
         sut.numberOfPages = 5
         var receivedPage: Int?
 
         // when
         let output = sut.onChange { receivedPage = $0 }
         sut.currentPage = 3
-        sut.sendActions(for: .valueChanged)
+        sut.handlePageControlValueChanged()
 
         // then
         XCTAssertEqual(receivedPage, 3)

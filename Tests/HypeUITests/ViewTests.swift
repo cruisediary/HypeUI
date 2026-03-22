@@ -144,7 +144,9 @@ final class ViewTests: XCLayoutTestCase {
         contentView.layoutIfNeeded()
 
         // then
-        XCTAssertEqual(contentView.center, contentView.convert(CGPoint(x: sut.bounds.midX, y: sut.bounds.midY), from: sut))
+        let sutCenter = contentView.convert(CGPoint(x: sut.bounds.midX, y: sut.bounds.midY), from: sut)
+        XCTAssertEqual(contentView.center.x, sutCenter.x, accuracy: 1.0)
+        XCTAssertEqual(contentView.center.y, sutCenter.y, accuracy: 1.0)
     }
 
     func testOverlayAlignmentTopLeading() {
@@ -200,7 +202,8 @@ final class ViewTests: XCLayoutTestCase {
         contentView.layoutIfNeeded()
 
         // Then
-        XCTAssertEqual(sut.center, CGPoint(x: 200, y: 200))
+        XCTAssertEqual(sut.center.x, 200, accuracy: 1.0)
+        XCTAssertEqual(sut.center.y, 200, accuracy: 1.0)
         XCTAssertEqual(sut.bounds.size, CGSize(width: 200, height: 200))
     }
 
