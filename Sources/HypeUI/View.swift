@@ -314,13 +314,15 @@ public extension UIView {
         return self
     }
 
-    /// Fixes the view at its ideal size in the specified dimensions.
-    /// Sets both horizontal and vertical content compression resistance to required,
-    /// preventing the view from being compressed smaller than its intrinsic content size.
+    /// Fixes the view at its ideal size in both dimensions.
+    /// Sets content compression resistance and content hugging priority to required,
+    /// preventing the view from shrinking below or growing beyond its intrinsic content size.
     /// - Returns: Modified view.
     func fixedSize() -> Self {
         setContentCompressionResistancePriority(.required, for: .horizontal)
         setContentCompressionResistancePriority(.required, for: .vertical)
+        setContentHuggingPriority(.required, for: .horizontal)
+        setContentHuggingPriority(.required, for: .vertical)
         return self
     }
 }

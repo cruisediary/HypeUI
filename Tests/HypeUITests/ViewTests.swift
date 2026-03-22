@@ -291,6 +291,8 @@ final class ViewTests: XCLayoutTestCase {
         // Then
         XCTAssertEqual(sut.contentCompressionResistancePriority(for: .horizontal), .required)
         XCTAssertEqual(sut.contentCompressionResistancePriority(for: .vertical), .required)
+        XCTAssertEqual(sut.contentHuggingPriority(for: .horizontal), .required)
+        XCTAssertEqual(sut.contentHuggingPriority(for: .vertical), .required)
         XCTAssertEqual(sut, output)
     }
 
