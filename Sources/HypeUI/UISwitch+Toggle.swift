@@ -24,7 +24,7 @@ public extension UISwitch {
 
     private var onChangeAction: ((Bool) -> Void)? {
         get { objc_getAssociatedObject(self, &uiSwitchOnChangeKey) as? (Bool) -> Void }
-        set { objc_setAssociatedObject(self, &uiSwitchOnChangeKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
+        set { objc_setAssociatedObject(self, &uiSwitchOnChangeKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
     /// Sets the on/off state of the switch.
@@ -64,6 +64,7 @@ public extension UISwitch {
     /// - Returns: Modified switch.
     func onChange(_ action: @escaping (Bool) -> Void) -> Self {
         onChangeAction = action
+        removeTarget(self, action: #selector(handleSwitchValueChanged), for: .valueChanged)
         addTarget(self, action: #selector(handleSwitchValueChanged), for: .valueChanged)
         return self
     }

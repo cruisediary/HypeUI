@@ -24,7 +24,7 @@ public extension UIStepper {
 
     private var onChangeAction: ((Double) -> Void)? {
         get { objc_getAssociatedObject(self, &uiStepperOnChangeKey) as? (Double) -> Void }
-        set { objc_setAssociatedObject(self, &uiStepperOnChangeKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
+        set { objc_setAssociatedObject(self, &uiStepperOnChangeKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
     /// Sets the numeric value of the stepper.
@@ -88,6 +88,7 @@ public extension UIStepper {
     /// - Returns: Modified stepper.
     func onChange(_ action: @escaping (Double) -> Void) -> Self {
         onChangeAction = action
+        removeTarget(self, action: #selector(handleStepperValueChanged), for: .valueChanged)
         addTarget(self, action: #selector(handleStepperValueChanged), for: .valueChanged)
         return self
     }

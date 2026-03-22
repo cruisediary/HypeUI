@@ -24,7 +24,7 @@ public extension UISlider {
 
     private var onChangeAction: ((Float) -> Void)? {
         get { objc_getAssociatedObject(self, &uiSliderOnChangeKey) as? (Float) -> Void }
-        set { objc_setAssociatedObject(self, &uiSliderOnChangeKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
+        set { objc_setAssociatedObject(self, &uiSliderOnChangeKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
     /// Sets the current value of the slider.
@@ -90,6 +90,7 @@ public extension UISlider {
     /// - Returns: Modified slider.
     func onChange(_ action: @escaping (Float) -> Void) -> Self {
         onChangeAction = action
+        removeTarget(self, action: #selector(handleSliderValueChanged), for: .valueChanged)
         addTarget(self, action: #selector(handleSliderValueChanged), for: .valueChanged)
         return self
     }

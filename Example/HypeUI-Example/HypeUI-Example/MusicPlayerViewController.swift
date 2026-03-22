@@ -255,7 +255,7 @@ final class MusicPlayerViewController: UIViewController {
     private func togglePlayback() {
         isPlaying.toggle()
         if isPlaying {
-            timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
+            let t = Timer(timeInterval: 0.1, repeats: true) { [weak self] _ in
                 guard let self = self else { return }
                 let duration = Float(self.tracks[self.currentTrack].duration)
                 if self.progress < 1.0 {
@@ -264,6 +264,8 @@ final class MusicPlayerViewController: UIViewController {
                     self.nextTrack()
                 }
             }
+            RunLoop.current.add(t, forMode: .common)
+            timer = t
         } else {
             timer?.invalidate()
             timer = nil

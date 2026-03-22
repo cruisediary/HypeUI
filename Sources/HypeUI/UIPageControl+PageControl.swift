@@ -24,7 +24,7 @@ public extension UIPageControl {
 
     private var onChangeAction: ((Int) -> Void)? {
         get { objc_getAssociatedObject(self, &uiPageControlOnChangeKey) as? (Int) -> Void }
-        set { objc_setAssociatedObject(self, &uiPageControlOnChangeKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
+        set { objc_setAssociatedObject(self, &uiPageControlOnChangeKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
     /// Sets the current page displayed by the page control.
@@ -72,6 +72,7 @@ public extension UIPageControl {
     /// - Returns: Modified page control.
     func onChange(_ action: @escaping (Int) -> Void) -> Self {
         onChangeAction = action
+        removeTarget(self, action: #selector(handlePageControlValueChanged), for: .valueChanged)
         addTarget(self, action: #selector(handlePageControlValueChanged), for: .valueChanged)
         return self
     }
