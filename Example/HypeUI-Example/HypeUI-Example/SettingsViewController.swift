@@ -187,8 +187,8 @@ final class SettingsViewController: UIViewController {
                             Button(action: { [weak self] in
                                 guard let self = self else { return }
                                 self.isSyncing = true
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                                    self.isSyncing = false
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { [weak self] in
+                                    self?.isSyncing = false
                                 }
                             }) {
                                 Text("Sync Now")

@@ -131,7 +131,7 @@ final class ComponentGalleryViewController: UIViewController {
             (.systemYellow, "Yellow"),
             (.systemGreen,  "Green"),
             (.systemTeal,   "Teal"),
-            (.systemTeal,   "Teal 2"),
+            (.systemBrown,  "Brown"),
         ]
 
         return VStack(alignment: .leading, spacing: 0) {
