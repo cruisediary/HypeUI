@@ -93,7 +93,7 @@ public extension UIStepper {
         return self
     }
 
-    @objc func handleStepperValueChanged() {
+    @objc internal func handleStepperValueChanged() {
         onChangeAction?(value)
     }
 }

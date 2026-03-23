@@ -95,7 +95,7 @@ public extension UISlider {
         return self
     }
 
-    @objc func handleSliderValueChanged() {
+    @objc internal func handleSliderValueChanged() {
         onChangeAction?(value)
     }
 }

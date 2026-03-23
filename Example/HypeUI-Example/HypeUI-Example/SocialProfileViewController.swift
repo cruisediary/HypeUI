@@ -45,14 +45,14 @@ final class SocialProfileViewController: UIViewController {
             .border(.white, width: 3)
         avatarImageView.loadRemote(seed: 21, width: 176, height: 176)
 
-        let followerLabel = Text("12.4K")
+        let followerLabel = Text("12400")
             .font(UIFont.systemFont(ofSize: 18, weight: .bold))
             .foregroundColor(.label)
             .textAligned(.center)
 
         $followerCount
             .map { count -> String? in
-                count >= 1000 ? String(format: "%.1fK", Double(count) / 1000) : "\(count)"
+                count >= 100_000 ? String(format: "%.1fK", Double(count) / 1000) : "\(count)"
             }
             .observe(on: MainScheduler.instance)
             .bind(to: followerLabel.rx.text)

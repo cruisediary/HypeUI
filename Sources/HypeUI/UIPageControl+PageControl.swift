@@ -77,7 +77,7 @@ public extension UIPageControl {
         return self
     }
 
-    @objc func handlePageControlValueChanged() {
+    @objc internal func handlePageControlValueChanged() {
         onChangeAction?(currentPage)
     }
 }

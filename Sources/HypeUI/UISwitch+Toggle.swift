@@ -69,7 +69,7 @@ public extension UISwitch {
         return self
     }
 
-    @objc func handleSwitchValueChanged() {
+    @objc internal func handleSwitchValueChanged() {
         onChangeAction?(isOn)
     }
 }

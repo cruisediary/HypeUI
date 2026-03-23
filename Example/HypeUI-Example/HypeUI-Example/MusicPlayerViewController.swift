@@ -272,7 +272,7 @@ final class MusicPlayerViewController: UIViewController {
     private func nextTrack() {
         progress = 0
         currentTrack = isShuffle
-            ? Int.random(in: 0..<tracks.count)
+            ? (0..<tracks.count).filter { $0 != currentTrack }.randomElement() ?? (currentTrack + 1) % tracks.count
             : (currentTrack + 1) % tracks.count
         scrollToCurrentTrack(animated: true)
     }
